@@ -6,15 +6,19 @@ public class WordGuessingGame
 {
     private String hiddenWord;
     private String guessedWord;
+    private String underGuessing;
     private int numberOfTries;
     public InputReader reader;
+    public WordGenerator generator;
     
     public WordGuessingGame()
     {
-        hiddenWord = "abc";
-        guessedWord = "___";
+        generator = new WordGenerator();
+        hiddenWord = generator.generateWord();
+        guessedWord = initializeGuessedWord();
         this.numberOfTries = 0;
         reader = new InputReader();
+        generator = new WordGenerator();
     }
 
     public String getHiddenWord()
@@ -32,6 +36,13 @@ public class WordGuessingGame
         return numberOfTries;
     }
     
+    public String initializeGuessedWord(){
+        for(int i = 0; i < hiddenWord.length();i++){
+            underGuessing += "_";
+        }
+        return underGuessing;
+    }
+    
     private void showGuessedWord()
     {
         System.out.println("A palavra: " + getGuessedWord());
@@ -39,6 +50,11 @@ public class WordGuessingGame
     
     public void play(){
         showWelcome();
+        while(hiddenWord != guessedWord){
+            guess();
+        }
+        showGuessedWord();
+        showResult();
     }
     
     private void showWelcome(){
@@ -58,6 +74,10 @@ public class WordGuessingGame
     }
     
     private void showResult(){
-        System.out.println("Foram necessárias " + getNumberOfTries() + " tentativas.");
+        if(getNumberOfTries()==0 || getNumberOfTries()>1){
+            System.out.println("Foram necessárias " + getNumberOfTries() + " tentativas.");
+        }else{
+            System.out.println("Foi necessário " + getNumberOfTries() + " tentativa.");
+        }
     }
 }
