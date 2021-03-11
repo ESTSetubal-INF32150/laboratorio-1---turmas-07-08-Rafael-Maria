@@ -4,10 +4,10 @@
  */
 public class WordGuessingGame
 {
-    private String hiddenWord;
-    private String guessedWord;
+    public String hiddenWord;
+    public String guessedWord;
     private String underGuessing;
-    private int numberOfTries;
+    public int numberOfTries;
     public InputReader reader;
     public WordGenerator generator;
     
@@ -50,6 +50,8 @@ public class WordGuessingGame
     
     public void play(){
         showWelcome();
+        hiddenWord = generator.generateWord();
+        guessedWord = initializeGuessedWord();
         while(hiddenWord != guessedWord){
             guess();
         }
@@ -66,7 +68,9 @@ public class WordGuessingGame
         numberOfTries ++;
         for(int i=0; i< hiddenWord.length(); i++){
             char caracter = hiddenWord.charAt(i);
-            //if(caracter){}
+            //if(caracter.equals(reader)){
+            
+            //}
             
             
             
@@ -79,5 +83,6 @@ public class WordGuessingGame
         }else{
             System.out.println("Foi necessário " + getNumberOfTries() + " tentativa.");
         }
+        System.out.println("Para continuar a jogar pressione s");
     }
 }
