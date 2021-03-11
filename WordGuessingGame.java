@@ -4,14 +4,17 @@
  */
 public class WordGuessingGame
 {
-    private String hiddenWord = "abc";
-    private String guessedWord = "___";
+    private String hiddenWord;
+    private String guessedWord;
     private int numberOfTries;
+    public InputReader reader;
     
-    public WordGuessingGame(int numberOfTries, String hiddenWord)
+    public WordGuessingGame()
     {
-        this.numberOfTries = numberOfTries;
-        this.hiddenWord = hiddenWord;
+        hiddenWord = "abc";
+        guessedWord = "___";
+        this.numberOfTries = 0;
+        reader = new InputReader();
     }
 
     public String getHiddenWord()
@@ -29,10 +32,32 @@ public class WordGuessingGame
         return numberOfTries;
     }
     
-    public void showGuessedWord()
+    private void showGuessedWord()
     {
-        System.out.println("A palavra descoberta até agora:");
-        System.out.println(getGuessedWord());
+        System.out.println("A palavra: " + getGuessedWord());
     }
     
+    public void play(){
+        showWelcome();
+    }
+    
+    private void showWelcome(){
+        System.out.println("Bem-vindo ao Guessed Word");
+    }
+    
+    private void guess(){
+        reader = new InputReader();
+        numberOfTries ++;
+        for(int i=0; i< hiddenWord.length(); i++){
+            char caracter = hiddenWord.charAt(i);
+            //if(caracter){}
+            
+            
+            
+        }
+    }
+    
+    private void showResult(){
+        System.out.println("Foram necessárias " + getNumberOfTries() + " tentativas.");
+    }
 }
